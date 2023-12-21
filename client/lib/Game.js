@@ -39,7 +39,18 @@ export default class Game {
     this.render();
     this.#intervalId = setInterval(() => {
       this.#objects.forEach((object) => {
+        const nextX = object.position.x + object.speed.x;
+        const nextXWithWidth = nextX + object.width;
+        if (nextX < 0 || nextXWithWidth > this.#width) {
+          object.speed.x *= -1;
+        }
         object.position.x += object.speed.x;
+
+        const nextY = object.position.y + object.speed.y;
+        const nextYWithWidth = nextY + object.height;
+        if (nextY < 0 || nextYWithWidth > this.#height) {
+          object.speed.y *= -1;
+        }
         object.position.y += object.speed.y;
       });
       this.render();
@@ -63,4 +74,6 @@ export default class Game {
  * @prop {() => void} start
  * @prop {Point} position
  * @prop {Vector2} speed
+ * @prop {number} width
+ * @prop {number} height
  */

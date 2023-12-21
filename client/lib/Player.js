@@ -33,16 +33,16 @@ export default class Player {
     document.addEventListener("keydown", (event) => {
       switch (event.key) {
         case "ArrowDown":
-          this.speed.x = 1;
+          this.speed.y = 5;
           break;
         case "ArrowUp":
-          this.speed.y = -1;
+          this.speed.y = -5;
           break;
         case "ArrowLeft":
-          this.speed.x = -1;
+          this.speed.x = -5;
           break;
         case "ArrowRight":
-          this.speed.y = 1;
+          this.speed.x = 5;
           break;
       }
     });

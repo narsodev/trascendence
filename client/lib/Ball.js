@@ -33,5 +33,8 @@ export default class Ball {
     ctx.fillStyle = "red";
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
-  start() {}
+  start() {
+    this.speed.x = Math.floor(Math.random() * 9) + 1;
+    this.speed.y = Math.floor(Math.random() * 9) + 1;
+  }
 }

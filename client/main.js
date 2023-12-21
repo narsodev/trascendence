@@ -1,3 +1,4 @@
+"use strict";
 // @ts-check
 import Player from "./lib/Player.js";
 import Ball from "./lib/Ball.js";
@@ -8,7 +9,7 @@ const $ = (selector) => document.querySelector(selector);
 const $canvas = $("#game");
 const ctx = $canvas.getContext("2d");
 
-const canvasTickTime = 100;
+const canvasTickTime = 1000 / 60;
 
 const canvasWidth = 800;
 const canvasHeight = 600;
