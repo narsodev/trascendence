@@ -39,18 +39,10 @@ export default class Game {
     this.render();
     this.#intervalId = setInterval(() => {
       this.#objects.forEach((object) => {
-        const nextX = object.position.x + object.speed.x;
-        const nextXWithWidth = nextX + object.width;
-        if (nextX < 0 || nextXWithWidth > this.#width) {
-          object.speed.x *= -1;
-        }
+        object.checkCollision(this.#width, this.#height, this.#objects);
+
         object.position.x += object.speed.x;
 
-        const nextY = object.position.y + object.speed.y;
-        const nextYWithWidth = nextY + object.height;
-        if (nextY < 0 || nextYWithWidth > this.#height) {
-          object.speed.y *= -1;
-        }
         object.position.y += object.speed.y;
       });
       this.render();
@@ -72,6 +64,7 @@ export default class Game {
  * @typedef Drawable
  * @prop {(ctx: CanvasRenderingContext2D) => void} draw
  * @prop {() => void} start
+ * @prop {(width: number, height: number, objects: Drawable[]) => void} checkCollision
  * @prop {Point} position
  * @prop {Vector2} speed
  * @prop {number} width

@@ -33,21 +33,14 @@ export default class Player {
     document.addEventListener("keydown", (event) => {
       switch (event.key) {
         case "ArrowDown":
-          this.speed.y = 5;
+          this.speed.y = 8;
           break;
         case "ArrowUp":
-          this.speed.y = -5;
-          break;
-        case "ArrowLeft":
-          this.speed.x = -5;
-          break;
-        case "ArrowRight":
-          this.speed.x = 5;
+          this.speed.y = -8;
           break;
       }
     });
     document.addEventListener("keyup", () => {
-      this.speed.x = 0;
       this.speed.y = 0;
     });
   }
@@ -64,5 +57,19 @@ export default class Player {
       this.width,
       this.height
     );
+  }
+
+  /**
+   * @param {number} width
+   * @param {number} height
+   * @param {Drawable[]} objects
+   */
+  checkCollision(width, height, objects) {
+    if (
+      this.position.y + this.speed.y < 0 ||
+      this.position.y + this.speed.y + this.height > height
+    ) {
+      this.speed.y = 0;
+    }
   }
 }

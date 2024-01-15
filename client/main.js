@@ -14,8 +14,8 @@ const canvasTickTime = 1000 / 60;
 const canvasWidth = 800;
 const canvasHeight = 600;
 
-const ballWidth = 50;
-const ballHeight = 50;
+const ballWidth = 20;
+const ballHeight = 20;
 const ball = new Ball(
   ballWidth,
   ballHeight,
@@ -28,10 +28,21 @@ const playerHeight = 50;
 const player = new Player(
   playerWidth,
   playerHeight,
-  canvasWidth / 2 - playerWidth / 2,
-  canvasHeight - playerHeight
+  canvasWidth - playerWidth * 2,
+  canvasHeight / 2 - playerHeight / 2
+);
+const player2 = new Player(
+  playerWidth,
+  playerHeight,
+  playerWidth,
+  canvasHeight / 2 - playerHeight / 2
 );
 const game = new Game(ctx, canvasWidth, canvasHeight, canvasTickTime);
 game.addObject(ball);
 game.addObject(player);
-game.start();
+game.addObject(player2);
+
+const $startButton = $("#start");
+$startButton.addEventListener("click", () => {
+  game.start();
+});
